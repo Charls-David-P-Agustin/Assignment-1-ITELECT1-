@@ -1,49 +1,50 @@
 # Assignment-1-ITELECT1-
 
-package com.example.myapp;
-
-import android.os.Bundle;
-import android.util.Log;
-import androidx.appcompat.app.AppCompatActivity;
-
-public class MainActivity extends AppCompatActivity {
-
-    private static final String TAG = "ActivityLifecycle";
-
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-        Log.d(TAG, "onCreate: Activity is created");
-    }
-
-    @Override
-    protected void onStart() {
-        super.onStart();
-        Log.d(TAG, "onStart: Activity is visible to the user");
-    }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-        Log.d(TAG, "onResume: Activity is now in the foreground");
-    }
-
-    @Override
-    protected void onPause() {
-        super.onPause();
-        Log.d(TAG, "onPause: Another activity is taking focus");
-    }
-
-    @Override
-    protected void onStop() {
-        super.onStop();
-        Log.d(TAG, "onStop: Activity is no longer visible");
-    }
-
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        Log.d(TAG, "onDestroy: Activity is being destroyed");
-    }
+import android.os.Bundle import androidx.activity.ComponentActivity import
+androidx.activity.compose.setContent import
+androidx.compose.foundation.layout.fillMaxSize import
+androidx.compose.material3.MaterialTheme import
+androidx.compose.material3.Surface import androidx.compose.material3.Text
+import androidx.compose.runtime.Composable import androidx.compose.ui.Modifier
+import androidx.compose.ui.tooling.preview.Preview import
+com.example.activities.ui.theme.ActivitiesTheme
+class MainActivity : ComponentActivity() {
+override fun onCreate(savedInstanceState: Bundle?) {
+super.onCreate(savedInstanceState)
+println("onCreate()")
+setContent {
+ActivitiesTheme {
+Surface(
+modifier = Modifier.fillMaxSize(),
+color = MaterialTheme.colorScheme.background
+) {
+Greeting("Android")
 }
+}
+}
+}
+override fun onStart() {
+super.onStart()
+println("onStart()")
+}
+override fun onResume() {
+super.onResume()
+println("onResume()")
+}
+override fun onPause() {
+super.onPause()
+println("onPause()")
+}
+override fun onStop() {
+super.onStop()
+println("onStop()")
+}
+override fun onDestroy() {
+super.onDestroy()
+println("onDestroy()")
+}
+}
+@Composable fun Greeting(name: String, modifier: Modifier = Modifier) { Text(
+text = "Hello $name!", modifier = modifier ) }
+@Preview(showBackground = true) @Composable fun GreetingPreview() {
+ActivitiesTheme { Greeting("Android") } }
